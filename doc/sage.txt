@@ -1,0 +1,135 @@
+*sage.txt*  Local-first AI coding assistant for Neovim
+
+SAGE.NVIM                                                          *sage.nvim*
+
+Author:  Sage Works AI <support@sageworksai.com>
+Repo:    https://github.com/sageworksai/sage.nvim
+License: MIT
+
+==============================================================================
+CONTENTS                                                      *sage-contents*
+
+  1. Introduction .................... |sage-introduction|
+  2. Installation .................... |sage-installation|
+  3. Setup ........................... |sage-setup|
+  4. Commands ........................ |sage-commands|
+  5. Keymaps ......................... |sage-keymaps|
+  6. Configuration ................... |sage-config|
+
+==============================================================================
+1. INTRODUCTION                                            *sage-introduction*
+
+sage.nvim integrates the sage AI CLI into Neovim. It provides:
+
+- Code explanation in a floating window
+- In-place refactoring (writes files via sage run)
+- Test generation for the current file
+- Error fixing on selected code
+- A floating chat panel
+- Git commit message generation (integrates with fugitive/neogit)
+- Model switching (cloud:*, openrouter:*, ollama:*, llama_cpp:*)
+
+Requires: pip install sage-ai-cli && sage login
+
+==============================================================================
+2. INSTALLATION                                            *sage-installation*
+
+lazy.nvim: >
+    {
+      "sageworksai/sage.nvim",
+      config = function()
+        require("sage").setup()
+      end
+    }
+<
+
+vim-plug: >
+    Plug 'sageworksai/sage.nvim'
+<
+
+==============================================================================
+3. SETUP                                                        *sage-setup*
+
+Minimal: >
+    require("sage").setup()
+<
+
+Full: >
+    require("sage").setup({
+      model        = "",          -- blank = read from ~/.sage/config.json
+      context_lines = 50,
+      binary       = "",          -- blank = auto-discover sage binary
+      keymaps = {
+        explain  = "<leader>se",
+        refactor = "<leader>sr",
+        tests    = "<leader>st",
+        fix      = "<leader>sf",
+        chat     = "<leader>sc",
+        commit   = "<leader>sg",
+        run      = "<leader>sx",
+        models   = "<leader>sm",
+      },
+    })
+<
+
+==============================================================================
+4. COMMANDS                                                    *sage-commands*
+
+:SageExplain                                                   *:SageExplain*
+    Explain the current selection or surrounding context.
+    Works in visual and normal mode.
+
+:SageRefactor                                                 *:SageRefactor*
+    Refactor the selected code and write the result to the file.
+
+:SageTests                                                       *:SageTests*
+    Generate unit tests for the current file.
+
+:SageFix                                                           *:SageFix*
+    Fix errors in the selected code.
+
+:SageChat                                                         *:SageChat*
+    Open a floating chat panel. Press <CR> on the input line to send.
+    Press q to close.
+
+:SageCommit                                                     *:SageCommit*
+    Generate a git commit message from the staged diff.
+    Integrates with fugitive and neogit if installed.
+
+:SageRun                                                           *:SageRun*
+    Prompt for a task and run it with the sage agent (file edits, tests).
+
+:SageModels / :SageModel                                       *:SageModels*
+    List available models and select one interactively.
+
+==============================================================================
+5. KEYMAPS                                                      *sage-keymaps*
+
+Default keymaps (all in normal and visual mode):
+
+    <leader>se  SageExplain
+    <leader>sr  SageRefactor
+    <leader>st  SageTests
+    <leader>sf  SageFix
+    <leader>sc  SageChat
+    <leader>sg  SageCommit
+    <leader>sx  SageRun
+    <leader>sm  SageModels
+
+Override in setup({ keymaps = { explain = "<leader>ai", ... } }).
+Set any key to "" to disable that keymap.
+
+==============================================================================
+6. CONFIGURATION                                               *sage-config*
+
+All options with defaults: >
+
+    require("sage").setup({
+      model         = "",     -- model ID (e.g. "cloud:qwen3-coder")
+      context_lines = 50,     -- lines of context sent with code actions
+      binary        = "",     -- explicit path to sage binary
+      keymaps       = { ... } -- see |sage-keymaps|
+    })
+<
+
+vim:ft=help:tw=78:ts=8:noet:
