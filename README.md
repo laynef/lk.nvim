@@ -1,6 +1,6 @@
 # sage.nvim
 
-Local-first AI coding assistant for Neovim — 200+ free models, no API key needed.
+Local-first AI coding assistant for Neovim — 1,000+ free models, no API key needed.
 
 ## Install
 
