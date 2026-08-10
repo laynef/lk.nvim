@@ -2,8 +2,8 @@
 
 SAGE.NVIM                                                          *sage.nvim*
 
-Author:  Sage Works AI <support@sageworksai.com>
-Repo:    https://github.com/sageworksai/sage.nvim
+Author:  Local Keep AI <info@localkeep.ai>
+Repo:    https://github.com/laynef/sage.nvim
 License: MIT
 
 ==============================================================================
@@ -29,33 +29,33 @@ sage.nvim integrates the sage AI CLI into Neovim. It provides:
 - Git commit message generation (integrates with fugitive/neogit)
 - Model switching (cloud:*, openrouter:*, ollama:*, llama_cpp:*)
 
-Requires: pip install sage-ai-cli && sage login
+Requires: pip install local-keep-ai-cli && sage login
 
 ==============================================================================
 2. INSTALLATION                                            *sage-installation*
 
 lazy.nvim: >
     {
-      "sageworksai/sage.nvim",
+      "laynef/sage.nvim",
       config = function()
-        require("sage").setup()
+        require("lk").setup()
       end
     }
 <
 
 vim-plug: >
-    Plug 'sageworksai/sage.nvim'
+    Plug 'laynef/sage.nvim'
 <
 
 ==============================================================================
 3. SETUP                                                        *sage-setup*
 
 Minimal: >
-    require("sage").setup()
+    require("lk").setup()
 <
 
 Full: >
-    require("sage").setup({
+    require("lk").setup({
       model        = "",          -- blank = read from ~/.sage/config.json
       context_lines = 50,
       binary       = "",          -- blank = auto-discover sage binary
@@ -75,31 +75,31 @@ Full: >
 ==============================================================================
 4. COMMANDS                                                    *sage-commands*
 
-:SageExplain                                                   *:SageExplain*
+:LKExplain                                                   *:LKExplain*
     Explain the current selection or surrounding context.
     Works in visual and normal mode.
 
-:SageRefactor                                                 *:SageRefactor*
+:LKRefactor                                                 *:LKRefactor*
     Refactor the selected code and write the result to the file.
 
-:SageTests                                                       *:SageTests*
+:LKTests                                                       *:LKTests*
     Generate unit tests for the current file.
 
-:SageFix                                                           *:SageFix*
+:LKFix                                                           *:LKFix*
     Fix errors in the selected code.
 
-:SageChat                                                         *:SageChat*
+:LKChat                                                         *:LKChat*
     Open a floating chat panel. Press <CR> on the input line to send.
     Press q to close.
 
-:SageCommit                                                     *:SageCommit*
+:LKCommit                                                     *:LKCommit*
     Generate a git commit message from the staged diff.
     Integrates with fugitive and neogit if installed.
 
-:SageRun                                                           *:SageRun*
+:LKRun                                                           *:LKRun*
     Prompt for a task and run it with the sage agent (file edits, tests).
 
-:SageModels / :SageModel                                       *:SageModels*
+:LKModels / :LKModel                                       *:LKModels*
     List available models and select one interactively.
 
 ==============================================================================
@@ -124,7 +124,7 @@ Set any key to "" to disable that keymap.
 
 All options with defaults: >
 
-    require("sage").setup({
+    require("lk").setup({
       model         = "",     -- model ID (e.g. "cloud:qwen3-coder")
       context_lines = 50,     -- lines of context sent with code actions
       binary        = "",     -- explicit path to sage binary

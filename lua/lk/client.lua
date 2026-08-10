@@ -8,7 +8,7 @@ end
 function M.find_binary()
   local candidates = {
     config.binary,
-    "sage",
+    "lk",
     vim.fn.expand("~/.local/bin/sage"),
     vim.fn.expand("~/.pyenv/shims/sage"),
     "/opt/homebrew/bin/sage",
@@ -19,7 +19,7 @@ function M.find_binary()
       return p
     end
   end
-  error("sage binary not found. Install: pip install sage-ai-cli && sage login")
+  error("sage binary not found. Install: pip install local-keep-ai-cli && sage login")
 end
 
 function M.read_default_model()

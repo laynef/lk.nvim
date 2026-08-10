@@ -1,6 +1,6 @@
 local M = {}
-local client = require("sage.client")
-local util   = require("sage.util")
+local client = require("lk.client")
+local util   = require("lk.util")
 
 function M.generate()
   local cwd = vim.fn.getcwd()
@@ -16,7 +16,7 @@ function M.generate()
       end
       local prompt = "Write a git commit message (conventional commits format, max 72-char subject line) for:\n\n" .. diff:sub(1, 4000)
       local model = client.read_default_model()
-      local _, _, append = util.open_float("Sage: Commit Message")
+      local _, _, append = util.open_float("Local Keep AI: Commit Message")
 
       client.run_async(
         { "ask", "--model", model, "--raw", prompt },

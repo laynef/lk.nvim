@@ -1,6 +1,6 @@
 local M = {}
-local client = require("sage.client")
-local util   = require("sage.util")
+local client = require("lk.client")
+local util   = require("lk.util")
 
 local state = {
   buf = nil, win = nil, input_buf = nil, input_win = nil,
@@ -26,7 +26,7 @@ function M.open()
   state.win = vim.api.nvim_open_win(state.buf, false, {
     relative = "editor", width = w, height = h, row = r, col = c,
     style = "minimal", border = "rounded",
-    title = " Sage Chat ", title_pos = "center",
+    title = " Local Keep AI Chat ", title_pos = "center",
   })
 
   -- Input window below
@@ -95,7 +95,7 @@ function M._render()
   vim.api.nvim_buf_set_option(state.buf, "modifiable", true)
   local lines = {}
   for _, msg in ipairs(state.history) do
-    local prefix = msg.role == "user" and "You: " or "Sage: "
+    local prefix = msg.role == "user" and "You: " or "Local Keep AI: "
     for i, line in ipairs(vim.split(msg.content, "\n")) do
       table.insert(lines, (i == 1 and prefix or "      ") .. line)
     end

@@ -1,6 +1,6 @@
 local M = {}
-local client = require("sage.client")
-local util   = require("sage.util")
+local client = require("lk.client")
+local util   = require("lk.util")
 
 local function run_action(title, prompt, cwd, agent_mode)
   local model = client.read_default_model()
@@ -33,7 +33,7 @@ function M.explain()
     "Language: %s\nFile: %s\n\n```\n%s\n```\n\nExplain this code clearly and concisely.",
     lang, rel, sel
   )
-  run_action("Sage: Explain", prompt, vim.fn.getcwd())
+  run_action("Local Keep AI: Explain", prompt, vim.fn.getcwd())
 end
 
 function M.refactor()
@@ -48,7 +48,7 @@ function M.refactor()
     "Language: %s\nFile: %s\n\n```\n%s\n```\n\nRefactor for clarity and best practices. Output the improved code.",
     lang, rel, sel
   )
-  run_action("Sage: Refactor", prompt, vim.fn.getcwd(), true)
+  run_action("Local Keep AI: Refactor", prompt, vim.fn.getcwd(), true)
 end
 
 function M.generate_tests()
@@ -59,7 +59,7 @@ function M.generate_tests()
     "Language: %s\nFile: %s\n\nGenerate comprehensive unit tests for %s covering happy paths, edge cases, and errors.",
     lang, rel, rel
   )
-  run_action("Sage: Generate Tests", prompt, vim.fn.getcwd(), true)
+  run_action("Local Keep AI: Generate Tests", prompt, vim.fn.getcwd(), true)
 end
 
 function M.fix_error()
@@ -74,13 +74,13 @@ function M.fix_error()
     "Language: %s\nFile: %s\n\n```\n%s\n```\n\nFix any errors or issues in this code.",
     lang, rel, sel
   )
-  run_action("Sage: Fix", prompt, vim.fn.getcwd(), true)
+  run_action("Local Keep AI: Fix", prompt, vim.fn.getcwd(), true)
 end
 
 function M.run_prompt()
-  vim.ui.input({ prompt = "Sage task: " }, function(task)
+  vim.ui.input({ prompt = "Local Keep AI task: " }, function(task)
     if not task or task == "" then return end
-    run_action("Sage: Run", task, vim.fn.getcwd(), true)
+    run_action("Local Keep AI: Run", task, vim.fn.getcwd(), true)
   end)
 end
 
@@ -98,17 +98,17 @@ function M.switch_model()
     vim.notify("No models found. Is sage installed?", vim.log.levels.ERROR)
     return
   end
-  vim.ui.select(models, { prompt = "Select Sage model:" }, function(choice)
+  vim.ui.select(models, { prompt = "Select Local Keep AI model:" }, function(choice)
     if not choice then return end
-    require("sage").config.model = choice
-    vim.notify("Sage model: " .. choice, vim.log.levels.INFO)
+    require("lk").config.model = choice
+    vim.notify("Local Keep AI model: " .. choice, vim.log.levels.INFO)
   end)
 end
 
 function M.register_keymaps(maps)
   local function map(key, fn, desc)
     if key and key ~= "" then
-      vim.keymap.set({"n","v"}, key, fn, { silent = true, desc = "Sage: " .. desc })
+      vim.keymap.set({"n","v"}, key, fn, { silent = true, desc = "Local Keep AI: " .. desc })
     end
   end
   map(maps.explain,  M.explain,        "Explain")

@@ -7,9 +7,9 @@ Local-first AI coding assistant for Neovim — 200+ free models, no API key need
 **lazy.nvim:**
 ```lua
 {
-  "sageworksai/sage.nvim",
+  "laynef/sage.nvim",
   config = function()
-    require("sage").setup({
+    require("lk").setup({
       model = "",           -- leave blank to use ~/.sage/config.json default
       keymaps = {
         explain  = "<leader>se",
@@ -28,13 +28,13 @@ Local-first AI coding assistant for Neovim — 200+ free models, no API key need
 
 **vim-plug:**
 ```viml
-Plug 'sageworksai/sage.nvim'
+Plug 'laynef/sage.nvim'
 ```
 
 ## Requires
 
 ```bash
-pip install sage-ai-cli
+pip install local-keep-ai-cli
 sage login
 ```
 
@@ -42,13 +42,13 @@ sage login
 
 | Command | Default Key | Description |
 |---|---|---|
-| `:SageExplain` | `<leader>se` | Explain selection |
-| `:SageRefactor` | `<leader>sr` | Refactor selection (writes file) |
-| `:SageTests` | `<leader>st` | Generate tests for current file |
-| `:SageFix` | `<leader>sf` | Fix errors in selection |
-| `:SageChat` | `<leader>sc` | Open floating chat panel |
-| `:SageCommit` | `<leader>sg` | Generate commit message |
-| `:SageRun` | `<leader>sx` | Run agentic task (prompt) |
-| `:SageModels` | `<leader>sm` | List and switch models |
+| `:LKExplain` | `<leader>se` | Explain selection |
+| `:LKRefactor` | `<leader>sr` | Refactor selection (writes file) |
+| `:LKTests` | `<leader>st` | Generate tests for current file |
+| `:LKFix` | `<leader>sf` | Fix errors in selection |
+| `:LKChat` | `<leader>sc` | Open floating chat panel |
+| `:LKCommit` | `<leader>sg` | Generate commit message |
+| `:LKRun` | `<leader>sx` | Run agentic task (prompt) |
+| `:LKModels` | `<leader>sm` | List and switch models |
 
 All commands work on visual selections where applicable.

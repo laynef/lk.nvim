@@ -50,7 +50,7 @@ function M.open_float(title, width_ratio, height_ratio)
   local win = vim.api.nvim_open_win(buf, true, {
     relative = "editor", width = width, height = height,
     row = row, col = col, style = "minimal", border = "rounded",
-    title = " " .. (title or "Sage") .. " ", title_pos = "center",
+    title = " " .. (title or "Local Keep AI") .. " ", title_pos = "center",
   })
 
   -- q to close
