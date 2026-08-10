@@ -1,4 +1,8 @@
-# sage.nvim
+<p align="center">
+  <img src="https://raw.githubusercontent.com/laynef/lk.nvim/main/lk-icon.png" width="96" alt="Local Keep AI" />
+</p>
+
+# lk.nvim — Local Keep AI for Neovim
 
 Local-first AI coding assistant for Neovim — 1,000+ free models, no API key needed.
 
