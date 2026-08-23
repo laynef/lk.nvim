@@ -40,6 +40,10 @@ function M.run_async(args, cwd, on_chunk, on_done)
   local env = vim.fn.environ()
   env["NO_COLOR"] = "1"
   env["TERM"] = "dumb"
+  -- LK_TRUST asks the CLI for the confidence line. An ENV VAR, not the
+  -- --trust flag: an older `lk` answers an unknown option with exit 2 and
+  -- "No such option", which would break every chat rather than omit a line.
+  env["LK_TRUST"] = "1"
   local job_id = vim.fn.jobstart(full_args, {
     cwd = cwd or vim.fn.getcwd(),
     env = env,

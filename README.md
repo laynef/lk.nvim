@@ -11,7 +11,7 @@ Local-first AI coding assistant for Neovim — 1,000+ free models, no API key ne
 **lazy.nvim:**
 ```lua
 {
-  "laynef/sage.nvim",
+  "laynef/lk.nvim",
   config = function()
     require("lk").setup({
       model = "",           -- leave blank to use ~/.sage/config.json default
@@ -32,14 +32,14 @@ Local-first AI coding assistant for Neovim — 1,000+ free models, no API key ne
 
 **vim-plug:**
 ```viml
-Plug 'laynef/sage.nvim'
+Plug 'laynef/lk.nvim'
 ```
 
 ## Requires
 
 ```bash
 pip install local-keep-ai-cli
-sage login
+lk login
 ```
 
 ## Commands
